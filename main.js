@@ -1,6 +1,27 @@
 // 1.
 // Create a promise called myFirstPromise
+let myFirstPromise = new Promise((resolve, reject) => {
+  let bool = true;
+  if (bool) {
+    setTimeout(() => {
+      let rand = Math.random() * 10;
+      resolve(rand);
+    }, 2000);
+  } else {
+    setTimeout(() => {
+      reject("Cannot computer random number.")
+    }, 2000);
+  }
+});
 
+myFirstPromise.then((data) => {
+  console.log(`I have my random number ${data} and I will multiply it by 5`); //?
+  let x = data * 5;
+  return x;
+})
+  .then((x) => {
+    console.log(`Here is the result of my random number multiplied by 5: ${x}`)
+  });
 // Inside the promise
 // Create a boolean variable check and set it to true
 // Create a variable rand and it should calculate a random number between 1 and 10
@@ -27,6 +48,45 @@
 
 
 // 2.
+let data = [
+  { firstName: 'Joe', lastName: 'Peters' },
+  { firstName: 'Doug', lastName: 'Lawson' },
+  { firstName: 'Sandra', lastName: 'Mathers' },
+];
+
+let getDataPromise = (arr) => {
+  return new Promise((resolve, reject) => {
+    let error = false;
+    if (!error) {
+      setTimeout(() => {
+        let rand = arr;
+        resolve(rand);
+      }, 4000);
+    } else {
+      setTimeout(() => {
+        reject("Something went wrong")
+      }, 4000);
+  }
+});
+}
+
+
+getDataPromise(data).then((info) => {
+  console.log(info[0].firstName + " " + info[0].lastName);
+  console.log(info[1].firstName + " " + info[1].lastName);
+  console.log(info[2].firstName + " " + info[2].lastName);
+})
+.catch((err) => {
+  console.log(`${err}: That aint it chief.`);
+})
+
+  
+  
+  
+  
+
+
+
 // create a function called getDataPromise that returns a promise
 // inside the function create an error variable and set it to boolean false
 // create a conditional that handles the rejection if there is an error with a message 'Something went wrong'
@@ -39,8 +99,4 @@
 // Handle the error in case there is one
 // Test by setting your error variable to false then true
 
-let data = [
-  { firstName: 'Joe', lastName: 'Peters' },
-  { firstName: 'Doug', lastName: 'Lawson' },
-  { firstName: 'Sandra', lastName: 'Mathers' },
-];
+
